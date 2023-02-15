@@ -68,7 +68,10 @@
           />
         {/each}
         {#if showAddStep}
-          <StepCard on:save={(e) => handleAddStep(e.detail)} />
+          <StepCard
+            on:save={(e) => handleAddStep(e.detail)}
+            on:cancel={() => (showAddStep = false)}
+          />
         {/if}
         {#if showAddStep}
           <button

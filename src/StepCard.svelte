@@ -2,7 +2,7 @@
   import { onMount, createEventDispatcher } from 'svelte'
   import type { NewStep, Step } from './steps'
 
-  import CloseSquare from './icons/CloseSquare.svg'
+  import CloseSquare from './icons/CloseSquare.svelte'
 
   const dispatch = createEventDispatcher()
 
@@ -43,6 +43,11 @@
   })
   $: ({ enabled, type, isRegex, pat, out } = step ?? defaultNewStep)
   $: saveDisabled = !(formData?.pat && formData?.out)
+
+  let handleCancel = () => {
+    editing = false
+    dispatch('cancel')
+  }
 </script>
 
 <div class="card card-bordered card-compact shadow-sm">
@@ -147,10 +152,13 @@
 </div>
 
 {#if editing}
-  <div class="modal modal-open">
-    <div class="modal-box relative">
-      <button class="btn btn-square btn-sm btn-ghost absolute right-6 top-6">
-        <span><img src={CloseSquare} alt="close" /></span>
+  <div class="modal modal-open ">
+    <div class="modal-box relative md:w-11/12 lg:w-1/2 max-w-5xl">
+      <button
+        class="btn btn-square btn-ghost btn-sm absolute right-6 top-6"
+        on:click={handleCancel}
+      >
+        <CloseSquare class="h-6 w-6" />
       </button>
 
       <h3 class="text-lg font-semibold">Edit step</h3>
@@ -223,10 +231,14 @@
       </div>
 
       <div class="modal-action">
-        <button class="btn btn-ghost btn-sm" on:click={() => (editing = false)}>
+        <button class="btn btn-ghost btn-sm" on:click={handleCancel}>
           <span>Cancel</span>
         </button>
-        <button class="btn btn-ghost btn-sm" on:click={save} disabled={saveDisabled}>
+        <button
+          class="btn btn-ghost btn-sm"
+          on:click={save}
+          disabled={saveDisabled}
+        >
           <span>Save</span>
         </button>
       </div>
