@@ -59,9 +59,9 @@
       </div>
     </div>
 
-    <div class="px-1">
+    <div class="px-1 grid grid-cols-1 grid-flow-row auto-rows-max gap-y-1 max-h-full">
       <h2 class="text-lg font-semibold">Steps</h2>
-      <div class="mt-2 grid grid-cols-1 gap-y-2 overflow-auto max-h-96">
+      <div class="grid grid-cols-1 gap-y-2 overflow-auto max-h-96">
         {#each $steps as step, idx}
           <StepCard
             {idx}
@@ -77,7 +77,7 @@
           />
         {/if}
       </div>
-      <div class="mt-2 grid grid-cols-2 gap-2">
+      <div class="grid grid-cols-2 gap-2">
         {#if showAddStep}
           <button
             class="btn btn-primary"
