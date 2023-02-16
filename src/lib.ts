@@ -1,4 +1,5 @@
 import { saveAs } from 'file-saver'
+import { format as prettier } from 'prettier'
 import { error, success } from './toast'
 
 export const upload = (f: File, cb: (content: string) => any) => {
@@ -37,3 +38,9 @@ export const paste = () =>
     .catch(() => {
       error('Paste failed, check browser config')
     })
+
+export const format = (code: string) =>
+  prettier(code, {
+    semi: false,
+    singleQuote: true,
+  })

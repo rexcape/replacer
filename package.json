@@ -13,6 +13,7 @@
     "@sveltejs/vite-plugin-svelte": "^2.0.2",
     "@tsconfig/svelte": "^3.0.0",
     "@types/file-saver": "^2.0.5",
+    "@types/prettier": "^2.7.2",
     "autoprefixer": "^10.4.13",
     "daisyui": "^2.50.1",
     "postcss": "^8.4.21",
@@ -28,6 +29,7 @@
     "file-saver": "^2.0.5",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
+    "prettier": "^2.8.4",
     "sweetalert2": "^11.7.1",
     "yaml": "^2.2.1"
   }

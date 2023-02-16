@@ -4,6 +4,7 @@ specifiers:
   '@sveltejs/vite-plugin-svelte': ^2.0.2
   '@tsconfig/svelte': ^3.0.0
   '@types/file-saver': ^2.0.5
+  '@types/prettier': ^2.7.2
   autoprefixer: ^10.4.13
   clsx: ^1.2.1
   daisyui: ^2.50.1
@@ -11,6 +12,7 @@ specifiers:
   lodash: ^4.17.21
   moment: ^2.29.4
   postcss: ^8.4.21
+  prettier: ^2.8.4
   svelte: ^3.55.1
   svelte-check: ^2.10.3
   sweetalert2: ^11.7.1
@@ -25,6 +27,7 @@ dependencies:
   file-saver: 2.0.5
   lodash: 4.17.21
   moment: 2.29.4
+  prettier: 2.8.4
   sweetalert2: 11.7.1
   yaml: 2.2.1
 
@@ -32,6 +35,7 @@ devDependencies:
   '@sveltejs/vite-plugin-svelte': 2.0.2_svelte@3.55.1+vite@4.1.1
   '@tsconfig/svelte': 3.0.0
   '@types/file-saver': 2.0.5
+  '@types/prettier': 2.7.2
   autoprefixer: 10.4.13_postcss@8.4.21
   daisyui: 2.50.1_gbtt6ss3tbiz4yjtvdr6fbrj44
   postcss: 8.4.21
@@ -308,6 +312,10 @@ packages:
 
   /@types/node/18.13.0:
     resolution: {integrity: sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==}
+    dev: true
+
+  /@types/prettier/2.7.2:
+    resolution: {integrity: sha512-KufADq8uQqo1pYKVIYzfKbJfBAc0sOeXqGbFaSpv8MRmC/zXgowNZmFcbngndGk922QDmOASEXUZCaY48gs4cg==}
     dev: true
 
   /@types/pug/2.0.6:
@@ -931,6 +939,12 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: true
+
+  /prettier/2.8.4:
+    resolution: {integrity: sha512-vIS4Rlc2FNh0BySk3Wkd6xmwxB0FpOndW5fisM5H8hsZSxU2VWVB5CWIkIjWvrHjIhxk2g3bfMKM87zNTrZddw==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: false
 
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, createEventDispatcher } from 'svelte'
   import type { NewStep, Step } from './steps'
+  import { format } from './lib'
 
   const dispatch = createEventDispatcher()
 
@@ -45,6 +46,10 @@
   let handleCancel = () => {
     editing = false
     dispatch('cancel')
+  }
+
+  let handleFormat = () => {
+    formData.out = format(formData.out)
   }
 </script>
 
@@ -164,7 +169,7 @@
       <div class="grid gap-4 grid-cols-3 mt-2">
         <div class="form-control">
           <label class="label cursor-pointer">
-            <span class="label-text">Enabled</span>
+            <span class="label-text">IsEnabled</span>
             <input
               bind:checked={formData.enabled}
               class="checkbox checkbox-xs"
@@ -175,7 +180,7 @@
 
         <div class="form-control">
           <label class="label cursor-pointer">
-            <span class="label-text">RegExp</span>
+            <span class="label-text">IsRegularExpression</span>
             <input
               bind:checked={formData.isRegex}
               class="checkbox checkbox-xs"
@@ -186,7 +191,7 @@
 
         <div class="form-control">
           <label class="label cursor-pointer">
-            <span class="label-text">IsFunc</span>
+            <span class="label-text">IsFunctionReplacer</span>
             <input
               class="checkbox checkbox-xs"
               type="checkbox"
@@ -215,7 +220,16 @@
         />
       </div>
 
-      <div class="form-control  w-full">
+      <div class="form-control w-full relative">
+        {#if formData.type === 'func'}
+          <button
+            class="btn btn-xs btn-ghost absolute top-10 right-1"
+            on:click={handleFormat}
+            disabled={!formData.out}
+          >
+            <span>Format</span>
+          </button>
+        {/if}
         <label class="label" for="out">
           <span class="label-text">Output</span>
         </label>
