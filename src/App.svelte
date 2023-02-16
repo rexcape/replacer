@@ -11,6 +11,7 @@
   } from './steps'
 
   import StepCard from './StepCard.svelte'
+  import { copy } from './lib'
 
   let showAddStep = false
   let userInput: string
@@ -99,7 +100,13 @@
 
     <div class="px-1">
       <h2 class="text-lg font-semibold">Output</h2>
-      <div class="form-control mt-2">
+      <div class="form-control mt-2 relative">
+        <button
+          class="btn btn-xs absolute top-2 right-2"
+          on:click={() => copy(output)}
+        >
+          <span>Copy</span>
+        </button>
         <textarea
           bind:value={output}
           id="output"

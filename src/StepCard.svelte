@@ -2,8 +2,6 @@
   import { onMount, createEventDispatcher } from 'svelte'
   import type { NewStep, Step } from './steps'
 
-  import CloseSquare from './icons/CloseSquare.svelte'
-
   const dispatch = createEventDispatcher()
 
   const defaultNewStep = {
@@ -153,12 +151,12 @@
 
 {#if editing}
   <div class="modal modal-open ">
-    <div class="modal-box relative md:w-11/12 lg:w-1/2 max-w-5xl">
+    <div class="modal-box relative md:w-11/12 lg:w-2/3 max-w-5xl">
       <button
-        class="btn btn-square btn-ghost btn-sm absolute right-6 top-6"
+        class="btn btn-square btn-bordered btn-sm absolute right-6 top-6"
         on:click={handleCancel}
       >
-        <CloseSquare class="h-6 w-6" />
+        <span>X</span>
       </button>
 
       <h3 class="text-lg font-semibold">Edit step</h3>
