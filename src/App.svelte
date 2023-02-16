@@ -39,7 +39,7 @@
       <button class="btn btn-ghost" on:click={importSteps}>Import</button>
     </div>
     <div class="flex-none">
-      <button class="btn btn-ghost" on:click={exportSteps}>Export</button>
+      <button class="btn btn-ghost ml-2" on:click={exportSteps}>Export</button>
     </div>
   </div>
 
@@ -52,9 +52,9 @@
         <textarea
           bind:value={userInput}
           id="input"
-          class="textarea textarea-bordered resize-none font-mono"
+          class="textarea textarea-bordered resize-none font-mono text-xs"
           placeholder="Input some text here..."
-          rows={10}
+          rows={24}
         />
       </div>
     </div>
@@ -76,6 +76,8 @@
             on:cancel={() => (showAddStep = false)}
           />
         {/if}
+      </div>
+      <div class="mt-2 grid grid-cols-2 gap-2">
         {#if showAddStep}
           <button
             class="btn btn-primary"
@@ -88,8 +90,6 @@
             <span>Add Step</span>
           </button>
         {/if}
-      </div>
-      <div class="mt-5">
         <button
           class="btn btn-primary"
           disabled={replaceDisabled}
@@ -113,10 +113,10 @@
         <textarea
           bind:value={output}
           id="output"
-          class="textarea textarea-bordered resize-none font-mono"
+          class="textarea textarea-bordered resize-none font-mono text-xs"
           placeholder="And output goes here..."
           readonly
-          rows={10}
+          rows={24}
         />
       </div>
     </div>

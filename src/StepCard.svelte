@@ -156,7 +156,7 @@
 
 {#if editing}
   <div class="modal modal-open ">
-    <div class="modal-box relative md:w-11/12 lg:w-2/3 max-w-5xl">
+    <div class="modal-box relative md:w-11/12 lg:w-2/3 max-w-5xl grid grid-cols-1 gap-y-2">
       <button
         class="btn btn-square btn-bordered btn-sm absolute right-6 top-6"
         on:click={handleCancel}
@@ -166,7 +166,7 @@
 
       <h3 class="text-lg font-semibold">Edit step</h3>
 
-      <div class="grid gap-4 grid-cols-3 mt-2">
+      <div class="grid gap-4 grid-cols-3">
         <div class="form-control">
           <label class="label cursor-pointer">
             <span class="label-text">IsEnabled</span>
@@ -214,9 +214,9 @@
         <textarea
           bind:value={formData.pat}
           id="pat"
-          class="textarea textarea-bordered textarea-sm font-mono resize-none w-full"
+          class="textarea textarea-bordered textarea-sm font-mono text-sm resize-none w-full"
           placeholder="Input pattern here"
-          rows={2}
+          rows={3}
         />
       </div>
 
@@ -236,9 +236,9 @@
         <textarea
           bind:value={formData.out}
           id="out"
-          class="textarea textarea-bordered textarea-sm font-mono resize-none w-full"
+          class="textarea textarea-bordered textarea-sm font-mono text-sm resize-none w-full"
           placeholder="Output text here"
-          rows={5}
+          rows={8}
         />
       </div>
 
