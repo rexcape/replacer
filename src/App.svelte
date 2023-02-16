@@ -104,6 +104,7 @@
         <button
           class="btn btn-xs absolute top-2 right-2"
           on:click={() => copy(output)}
+          disabled={!output}
         >
           <span>Copy</span>
         </button>
