@@ -30,7 +30,7 @@
 </script>
 
 <div class="container mx-auto h-screen">
-  <div class="navbar">
+  <div class="navbar sticky">
     <div class="flex-1">
       <h1 class="text-xl font-semibold">replacer</h1>
     </div>
@@ -43,7 +43,9 @@
     </div>
   </div>
 
-  <div class="h-full grid md:grid-cols-3 md:gap-x-5 sm:grid-cols-1 sm:gap-y-5">
+  <div
+    class="max-h-full grid md:grid-cols-3 md:gap-x-5 sm:grid-cols-1 sm:gap-y-5"
+  >
     <div class="px-1">
       <h2 class="text-lg font-semibold">Input</h2>
       <div class="form-control mt-2">
@@ -59,7 +61,7 @@
 
     <div class="px-1">
       <h2 class="text-lg font-semibold">Steps</h2>
-      <div class="mt-2 grid grid-cols-1 gap-y-2">
+      <div class="mt-2 grid grid-cols-1 gap-y-2 overflow-auto max-h-96">
         {#each $steps as step, idx}
           <StepCard
             {idx}
