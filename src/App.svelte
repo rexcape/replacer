@@ -11,7 +11,7 @@
   } from './steps'
 
   import StepCard from './StepCard.svelte'
-  import { copy } from './lib'
+  import { copy, paste } from './lib'
 
   let showAddStep = false
   let userInput: string
@@ -26,6 +26,12 @@
 
   let handleReplace = () => {
     output = doReplace(userInput, $steps)
+  }
+
+  let handlePaste = () => {
+    paste().then((res) => {
+      if (res) userInput = res
+    })
   }
 </script>
 
@@ -49,7 +55,13 @@
   >
     <div class="px-1">
       <h2 class="text-lg font-semibold">Input</h2>
-      <div class="form-control mt-2">
+      <div class="form-control mt-2 relative">
+        <button
+          class="btn btn-xs absolute -top-7 right-0 btn-ghost"
+          on:click={handlePaste}
+        >
+          <span>Paste</span>
+        </button>
         <textarea
           bind:value={userInput}
           id="input"
