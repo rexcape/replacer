@@ -26,6 +26,7 @@
   "dependencies": {
     "clsx": "^1.2.1",
     "file-saver": "^2.0.5",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "sweetalert2": "^11.7.1",
     "yaml": "^2.2.1"
