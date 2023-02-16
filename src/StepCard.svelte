@@ -172,7 +172,7 @@
             <span class="label-text">IsEnabled</span>
             <input
               bind:checked={formData.enabled}
-              class="checkbox checkbox-xs"
+              class="toggle"
               type="checkbox"
             />
           </label>
@@ -183,7 +183,7 @@
             <span class="label-text">IsRegularExpression</span>
             <input
               bind:checked={formData.isRegex}
-              class="checkbox checkbox-xs"
+              class="toggle"
               type="checkbox"
             />
           </label>
@@ -193,7 +193,7 @@
           <label class="label cursor-pointer">
             <span class="label-text">IsFunctionReplacer</span>
             <input
-              class="checkbox checkbox-xs"
+              class="toggle"
               type="checkbox"
               checked={formData.type === 'func'}
               on:input={(e) => {
