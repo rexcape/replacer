@@ -1,9 +1,12 @@
 import { writable, get } from 'svelte/store'
 import moment from 'moment'
 import { stringify, parse } from 'yaml'
+import lodash from 'lodash'
 
 import { upload, download } from './lib'
 import { error } from './toast'
+
+const _ = lodash
 
 export interface Step {
   order: number
