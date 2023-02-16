@@ -29,20 +29,21 @@
   }
 </script>
 
-<div class="container mx-auto h-screen">
-  <div class="navbar sticky">
-    <div class="flex-1">
-      <h1 class="text-xl font-semibold">replacer</h1>
-    </div>
-
-    <div class="flex-none">
-      <button class="btn btn-ghost" on:click={importSteps}>Import</button>
-    </div>
-    <div class="flex-none">
-      <button class="btn btn-ghost ml-2" on:click={exportSteps}>Export</button>
-    </div>
+<div class="navbar fixed glass border-b-1 border-b-base-200 z-10 px-12">
+  <div class="flex-1">
+    <h1 class="text-xl font-semibold">replacer</h1>
   </div>
+  <div class="flex-none">
+    <button class="btn btn-ghost btn-sm" on:click={importSteps}>
+      <span>Import</span>
+    </button>
+    <button class="btn btn-ghost btn-sm ml-2" on:click={exportSteps}>
+      <span>Export</span>
+    </button>
+  </div>
+</div>
 
+<div class="container mx-auto h-screen pt-20">
   <div
     class="max-h-full grid md:grid-cols-3 md:gap-x-5 sm:grid-cols-1 sm:gap-y-5"
   >
@@ -59,7 +60,9 @@
       </div>
     </div>
 
-    <div class="px-1 grid grid-cols-1 grid-flow-row auto-rows-max gap-y-1 max-h-full">
+    <div
+      class="px-1 grid grid-cols-1 grid-flow-row auto-rows-max gap-y-1 max-h-full"
+    >
       <h2 class="text-lg font-semibold">Steps</h2>
       <div class="grid grid-cols-1 gap-y-2 overflow-auto max-h-96">
         {#each $steps as step, idx}
