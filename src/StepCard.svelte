@@ -223,7 +223,7 @@
       <div class="form-control w-full relative">
         {#if formData.type === 'func'}
           <button
-            class="btn btn-xs btn-ghost absolute top-10 right-1"
+            class="btn btn-xs btn-ghost absolute top-2 right-0"
             on:click={handleFormat}
             disabled={!formData.out}
           >

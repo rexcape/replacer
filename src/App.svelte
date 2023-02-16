@@ -107,7 +107,7 @@
       <h2 class="text-lg font-semibold">Output</h2>
       <div class="form-control mt-2 relative">
         <button
-          class="btn btn-xs absolute top-2 right-2"
+          class="btn btn-xs absolute -top-7 right-0 btn-ghost"
           on:click={() => copy(output)}
           disabled={!output}
         >
