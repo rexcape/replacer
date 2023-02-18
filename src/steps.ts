@@ -89,7 +89,7 @@ export const importSteps = () => {
     }
     upload(file, (content) => {
       const s = parse(content) as Step[]
-      steps.set(s)
+      steps.set(s.map(({ id, ...rest }) => ({ ...rest, id: id ?? nanoid() })))
     })
   }
   document.body.appendChild(input)
