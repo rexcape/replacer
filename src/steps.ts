@@ -105,3 +105,7 @@ export const exportSteps = () => {
   const name = `steps_${moment().format('YYYYMMDD_HH:mm:ss')}.txt`
   download(stringify(get(steps)), name)
 }
+
+export const clearSteps = () => {
+  steps.set([])
+}

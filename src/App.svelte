@@ -12,6 +12,7 @@
     removeStep,
     exportSteps,
     importSteps,
+    clearSteps,
   } from './steps'
 
   import StepCard from './StepCard.svelte'
@@ -89,8 +90,14 @@
     </div>
 
     <div
-      class="px-1 grid grid-cols-1 grid-flow-row auto-rows-max gap-y-2 max-h-full"
+      class="px-1 grid grid-cols-1 grid-flow-row auto-rows-max gap-y-2 max-h-full relative"
     >
+      <button
+        class="btn btn-xs absolute top-2 right-1 btn-ghost"
+        on:click={clearSteps}
+      >
+        <span>Clear</span>
+      </button>
       <h2 class="text-lg font-semibold">Steps</h2>
       <div class="relative">
         <div
