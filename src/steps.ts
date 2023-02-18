@@ -2,6 +2,7 @@ import { writable, get } from 'svelte/store'
 import moment from 'moment'
 import { stringify, parse } from 'yaml'
 import lodash from 'lodash'
+import { nanoid } from 'nanoid'
 
 import { upload, download } from './lib'
 import { error } from './toast'
@@ -9,7 +10,7 @@ import { error } from './toast'
 const _ = lodash
 
 export interface Step {
-  order: number
+  id: string
   pat: string
   out: string
   type: 'text' | 'func'
@@ -17,7 +18,7 @@ export interface Step {
   enabled: boolean
 }
 
-export type NewStep = Omit<Step, 'order'>
+export type NewStep = Omit<Step, 'order' | 'id'>
 
 type ReplaceFunc = (substring: string, ...args: any[]) => string
 
@@ -29,8 +30,9 @@ export const getCachedSteps = () => {
 export const steps = writable<Step[]>([])
 
 export const addStep = (st: NewStep) => {
+  const id = nanoid()
   steps.update((s) => {
-    s.push({ ...st, order: s.length + 1 })
+    s.push({ ...st, id: id })
     return s
   })
 }
@@ -49,23 +51,11 @@ export const updateStep = (idx: number, st: Step) => {
   })
 }
 
-export const changeOrder = (idx: number, newOrder: number) => {
-  steps.update((s) => {
-    s[idx].order = newOrder
-    return s
-  })
-}
-
-export const resort = () => {
-  steps.update((s) => s.sort((a, b) => a.order - b.order))
-}
-
 export const saveSteps = () => {
   localStorage.setItem('steps', JSON.stringify(get(steps)))
 }
 
 steps.subscribe(() => {
-  // resort()
   // saveSteps()
 })
 

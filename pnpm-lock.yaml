@@ -11,10 +11,13 @@ specifiers:
   file-saver: ^2.0.5
   lodash: ^4.17.21
   moment: ^2.29.4
+  nanoid: ^4.0.1
   postcss: ^8.4.21
   prettier: ^2.8.4
   svelte: ^3.55.1
   svelte-check: ^2.10.3
+  svelte-dnd-action: ^0.9.22
+  svrollbar: ^0.12.0
   sweetalert2: ^11.7.1
   tailwindcss: ^3.2.6
   tslib: ^2.5.0
@@ -27,7 +30,10 @@ dependencies:
   file-saver: 2.0.5
   lodash: 4.17.21
   moment: 2.29.4
+  nanoid: 4.0.1
   prettier: 2.8.4
+  svelte-dnd-action: 0.9.22_svelte@3.55.1
+  svrollbar: 0.12.0
   sweetalert2: 11.7.1
   yaml: 2.2.1
 
@@ -815,6 +821,12 @@ packages:
     hasBin: true
     dev: true
 
+  /nanoid/4.0.1:
+    resolution: {integrity: sha512-udKGtCCUafD3nQtJg9wBhRP3KMbPglUsgV5JVsXhvyBs/oefqb4sqMEhKBBgqZncYowu58p1prsZQBYvAj/Gww==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
+
   /node-releases/2.0.10:
     resolution: {integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==}
     dev: true
@@ -1090,6 +1102,14 @@ packages:
       - sugarss
     dev: true
 
+  /svelte-dnd-action/0.9.22_svelte@3.55.1:
+    resolution: {integrity: sha512-lOQJsNLM1QWv5mdxIkCVtk6k4lHCtLgfE59y8rs7iOM6erchbLC9hMEFYSveZz7biJV0mpg7yDSs4bj/RT/YkA==}
+    peerDependencies:
+      svelte: '>=3.23.0'
+    dependencies:
+      svelte: 3.55.1
+    dev: false
+
   /svelte-hmr/0.15.1_svelte@3.55.1:
     resolution: {integrity: sha512-BiKB4RZ8YSwRKCNVdNxK/GfY+r4Kjgp9jCLEy0DuqAKfmQtpL38cQK3afdpjw4sqSs4PLi3jIPJIFp259NkZtA==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
@@ -1154,7 +1174,10 @@ packages:
   /svelte/3.55.1:
     resolution: {integrity: sha512-S+87/P0Ve67HxKkEV23iCdAh/SX1xiSfjF1HOglno/YTbSTW7RniICMCofWGdJJbdjw3S+0PfFb1JtGfTXE0oQ==}
     engines: {node: '>= 8'}
-    dev: true
+
+  /svrollbar/0.12.0:
+    resolution: {integrity: sha512-okH0sz8bGtw+tgOfN1mpEtbveifxROcE3mbUMBJ1RQz8Q+1rVr+nVG7EAJ9b0G80cGDu7dskjAWuzj3iru0k5g==}
+    dev: false
 
   /sweetalert2/11.7.1:
     resolution: {integrity: sha512-+1bnkbqBl64FnZmi3g4SzAi4F3pL3S2jF1YQvrysv4GbgizfeFqGkJopxR3FnV/eJm6w2SQ2oAmCxSIBjgP/ag==}

@@ -1,4 +1,8 @@
 <script lang="ts">
+  import { dndzone } from 'svelte-dnd-action'
+  import { flip } from 'svelte/animate'
+  import { Svrollbar } from 'svrollbar'
+
   import {
     steps,
     type NewStep,
@@ -17,7 +21,11 @@
   let userInput: string
   let output: string
 
+  export let viewport: Element
+  export let contents: Element
+
   $: replaceDisabled = !(userInput && $steps.length > 0)
+  $: dragDisabled = !($steps.length > 0)
 
   let handleAddStep = (step: NewStep) => {
     addStep(step)
@@ -33,9 +41,17 @@
       if (res) userInput = res
     })
   }
+
+  let handleDndConsider = (e: any) => {
+    steps.set(e.detail.items)
+  }
+
+  let handleDndFinalize = (e: any) => {
+    steps.set(e.detail.items)
+  }
 </script>
 
-<div class="navbar fixed glass border-b-1 border-b-base-200 z-10 px-12">
+<div class="navbar fixed bg-base-100 border-b border-b-base-300 z-10 px-12">
   <div class="flex-1">
     <h1 class="text-xl font-semibold">replacer</h1>
   </div>
@@ -73,24 +89,54 @@
     </div>
 
     <div
-      class="px-1 grid grid-cols-1 grid-flow-row auto-rows-max gap-y-1 max-h-full"
+      class="px-1 grid grid-cols-1 grid-flow-row auto-rows-max gap-y-2 max-h-full"
     >
       <h2 class="text-lg font-semibold">Steps</h2>
-      <div class="grid grid-cols-1 gap-y-2 overflow-auto max-h-96">
-        {#each $steps as step, idx}
-          <StepCard
-            {idx}
-            {step}
-            on:save={(e) => updateStep(idx, e.detail)}
-            on:remove={() => removeStep(idx)}
-          />
-        {/each}
-        {#if showAddStep}
-          <StepCard
-            on:save={(e) => handleAddStep(e.detail)}
-            on:cancel={() => (showAddStep = false)}
-          />
-        {/if}
+      <div class="relative">
+        <div
+          bind:this={viewport}
+          id="viewport"
+          class="w-full h-[25rem] border border-neutral border-opacity-20 relative"
+        >
+          <div
+            bind:this={contents}
+            class="grid grid-cols-1 px-3 py-2 gap-y-2"
+            use:dndzone={{
+              items: $steps,
+              dragDisabled,
+              flipDurationMs: 300,
+              dropTargetStyle: {},
+            }}
+            on:consider={handleDndConsider}
+            on:finalize={handleDndFinalize}
+          >
+            {#each $steps as step, idx (step.id)}
+              <div animate:flip={{ duration: 300 }}>
+                <StepCard
+                  {idx}
+                  {step}
+                  on:save={(e) => updateStep(idx, e.detail)}
+                  on:remove={() => removeStep(idx)}
+                />
+              </div>
+            {:else}
+              <div
+                class="absolute right-0 top-0 w-full h-full flex flex-col justify-center items-center opacity-80"
+              >
+                <span class="text-xl font-semibold">No steps...</span>
+                <br />
+                <span class="">Click "Add Step" button to add a step</span>
+              </div>
+            {/each}
+            {#if showAddStep}
+              <StepCard
+                on:save={(e) => handleAddStep(e.detail)}
+                on:cancel={() => (showAddStep = false)}
+              />
+            {/if}
+          </div>
+        </div>
+        <Svrollbar {viewport} {contents} />
       </div>
       <div class="grid grid-cols-2 gap-2">
         {#if showAddStep}
@@ -137,3 +183,16 @@
     </div>
   </div>
 </div>
+
+<style>
+  #viewport {
+    overflow: scroll;
+    box-sizing: border-box;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  #viewport::-webkit-scrollbar {
+    display: none;
+  }
+</style>

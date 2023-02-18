@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount, createEventDispatcher } from 'svelte'
+
   import type { NewStep, Step } from './steps'
   import { format } from './lib'
 
@@ -53,7 +54,9 @@
   }
 </script>
 
-<div class="card card-bordered card-compact shadow-sm">
+<div
+  class="card card-bordered card-compact bg-base-100 hover:bg-opacity-80 transition"
+>
   <div class="card-body">
     {#if editing}
       <div>
@@ -125,12 +128,16 @@
       <h2 class="card-title text-sm font-semibold">
         <input class="checkbox checkbox-xs" type="checkbox" checked={enabled} />
         Step {idx + 1}
-        <span class="badge">pattern:{isRegex ? 'regex' : 'string'}</span>
-        <span class="badge">replace:{type}</span>
+        <span class="badge">{isRegex ? 'regex' : 'string'} to {type}</span>
       </h2>
-      <div>
-        Replace <span class="bg-base-200">{pat}</span><br />
-        With <span class="bg-base-200">{out}</span>
+      <div class="flex flex-row content-center items-center">
+        <span class="block bg-base-200 w-1/2 rounded px-2 truncate"
+          >{isRegex ? 'RegExp' : pat}</span
+        >
+        <span>➡️</span>
+        <span class="block bg-base-200 w-1/2 rounded px-2 truncate"
+          >{type === 'func' ? 'Func' : out}</span
+        >
       </div>
     {/if}
     <div class="card-actions justify-end">
@@ -156,7 +163,9 @@
 
 {#if editing}
   <div class="modal modal-open ">
-    <div class="modal-box relative md:w-11/12 lg:w-2/3 max-w-5xl grid grid-cols-1 gap-y-2">
+    <div
+      class="modal-box relative md:w-11/12 lg:w-2/3 max-w-5xl grid grid-cols-1 gap-y-2"
+    >
       <button
         class="btn btn-square btn-bordered btn-sm absolute right-6 top-6"
         on:click={handleCancel}
