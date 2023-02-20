@@ -1,6 +1,4 @@
 import { saveAs } from 'file-saver'
-import { format as prettier } from 'prettier/standalone'
-import parserBabel from 'prettier/parser-babel'
 import { error, success } from './toast'
 
 export const upload = (f: File, cb: (content: string) => any) => {
@@ -40,10 +38,13 @@ export const paste = () =>
       error('Paste failed, check browser config')
     })
 
-export const format = (code: string) =>
-  prettier(code, {
+export const format = async (code: string) => {
+  const prettier = (await import('prettier')).format
+  const parserBabel = (await import('prettier/parser-babel')).default
+  return prettier(code, {
     parser: 'babel',
     semi: false,
     singleQuote: true,
     plugins: [parserBabel],
   })
+}

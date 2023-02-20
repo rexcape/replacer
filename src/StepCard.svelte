@@ -50,7 +50,9 @@
   }
 
   let handleFormat = () => {
-    formData.out = format(formData.out)
+    format(formData.out).then((res) => {
+      formData.out = res
+    })
   }
 </script>
 
