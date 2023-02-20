@@ -1,7 +1,6 @@
 import { writable, get } from 'svelte/store'
 import moment from 'moment'
 import { stringify, parse } from 'yaml'
-import _ from 'lodash/string'
 import { nanoid } from 'nanoid'
 
 import { upload, download } from './lib'
