@@ -1,13 +1,11 @@
 import { writable, get } from 'svelte/store'
 import moment from 'moment'
 import { stringify, parse } from 'yaml'
-import lodash from 'lodash'
+import _ from 'lodash/string'
 import { nanoid } from 'nanoid'
 
 import { upload, download } from './lib'
 import { error } from './toast'
-
-const _ = lodash
 
 export interface Step {
   id: string
@@ -59,9 +57,13 @@ steps.subscribe(() => {
   // saveSteps()
 })
 
+const getReplaceFunc = (code: string): ReplaceFunc => {
+  return eval(code) as ReplaceFunc
+}
+
 export const doReplace = (input: string, ss: Step[]) => {
   let result = input
-  ss.forEach((item) => {
+  ss.forEach((item, idx) => {
     if (!item.enabled) return
     let pat = item.isRegex ? new RegExp(item.pat, 'g') : item.pat
     switch (item.type) {
@@ -69,8 +71,12 @@ export const doReplace = (input: string, ss: Step[]) => {
         result = result.replaceAll(pat, item.out)
         break
       case 'func':
-        const f: ReplaceFunc = eval(`${item.out}`)
-        result = result.replaceAll(pat, f)
+        try {
+          const f: ReplaceFunc = getReplaceFunc(item.out)
+          result = result.replaceAll(pat, f)
+        } catch (e) {
+          error(`${e.name}: ${e.message}`, `Step ${idx} error`)
+        }
         break
     }
   })
